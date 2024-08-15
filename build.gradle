@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    // Apply the application plugin to add support for building CLI application
+    id 'application'
+}
+
+group = 'org.project'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    // Use maven central for resolving dependencies
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+}
+
+application {
+    // Define the main class for the application
+    mainClass = 'com.App'
+}
+
+tasks.named('test') {
+    // Use JUnit platform for unit tests
+    useJUnitPlatform()
+}
