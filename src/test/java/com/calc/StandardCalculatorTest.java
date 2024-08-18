@@ -1,16 +1,50 @@
 package com.calc;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StandardCalculatorTest {
     private StandardCalculator standardCalculator;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         standardCalculator = new StandardCalculator();
+    }
+
+    @Test
+    @DisplayName("Test Addition of Two Integers")
+    void testAdditionOperation() {
+        standardCalculator.add(1, 1);
+        double actualResult = standardCalculator.getResult();
+        assertEquals(2, actualResult);
+    }
+
+    @Test
+    @DisplayName("Test Subtraction of Two Integers")
+    void testSubtractionOperation() {
+        standardCalculator.subtract(1, 1);
+        double actualResult = standardCalculator.getResult();
+        assertEquals(0, actualResult);
+    }
+
+    @Test
+    @DisplayName("Test Multiplication of Two Integers")
+    void testMultiplicationOperation() {
+        standardCalculator.multiply(1, 1);
+        double actualResult = standardCalculator.getResult();
+        assertEquals(1, actualResult);
+    }
+
+    @Test
+    @DisplayName("Test Division of Two Integers")
+    void testDivisionOperation() {
+        standardCalculator.divide(1, 1);
+        double actualResult = standardCalculator.getResult();
+        assertEquals(1, actualResult);
     }
 
     @Test
@@ -18,7 +52,7 @@ public class StandardCalculatorTest {
     void testAdditionOperationForDoubles() {
         standardCalculator.add(1.0, 1.5);
         double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(2.5, actualResult);
+        assertEquals(2.5, actualResult);
     }
 
     @Test
@@ -26,7 +60,7 @@ public class StandardCalculatorTest {
     void testSubtractionOperationForDoubles() {
         standardCalculator.subtract(10.0, 20.5);
         double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(-10.5, actualResult);
+        assertEquals(-10.5, actualResult);
     }
 
     @Test
@@ -34,7 +68,7 @@ public class StandardCalculatorTest {
     void testMultiplicationOperationForDoubles() {
         standardCalculator.multiply(2.5, 4.0);
         double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(10.0, actualResult);
+        assertEquals(10.0, actualResult);
     }
 
     @Test
@@ -42,38 +76,18 @@ public class StandardCalculatorTest {
     void testDivisionOperationForDoubles() {
         standardCalculator.divide(10.0, 4.0);
         double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(2.5, actualResult);
+        assertEquals(2.5, actualResult);
     }
 
     @Test
-    @DisplayName("Test Addition of Two Integers")
-    void testAdditionOperation(){
-        standardCalculator.add(1,1);
-        double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(2, actualResult);
+    @DisplayName("Test Addition Overflow of Two Doubles")
+    void testAdditionOverflowForDoubles() {
+        assertThrows(ArithmeticException.class, () -> standardCalculator.add(Double.MAX_VALUE, Double.MAX_VALUE));
     }
 
     @Test
-    @DisplayName("Test Subtraction of Two Integers")
-    void testSubtractionOperation(){
-        standardCalculator.subtract(1,1);
-        double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(0, actualResult);
-    }
-
-    @Test
-    @DisplayName("Test Multiplication of Two Integers")
-    void testMultiplicationOperation(){
-        standardCalculator.multiply(1,1);
-        double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(1, actualResult);
-    }
-
-    @Test
-    @DisplayName("Test Division of Two Integers")
-    void testDivisionOperation(){
-        standardCalculator.divide(1,1);
-        double actualResult = standardCalculator.getResult();
-        Assertions.assertEquals(1, actualResult);
+    @DisplayName("Test Subtraction Overflow of Two Doubles")
+    void testSubtractionOverflowForDoubles() {
+        assertThrows(ArithmeticException.class, () -> standardCalculator.subtract(-Double.MAX_VALUE, Double.MAX_VALUE));
     }
 }

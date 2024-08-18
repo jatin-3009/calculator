@@ -23,7 +23,7 @@ dependencies {
 
 application {
     // Define the main class for the application
-    mainClass = 'com.App'
+    mainClass = 'com.calc.App'
 }
 
 tasks.named('test') {
