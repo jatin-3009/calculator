@@ -6,22 +6,27 @@ public class App {
     }
 
     public static void main(String[] args) {
-        StandardCalculator calc = new StandardCalculator();
+        StandardCalculator standardCalculator = new StandardCalculator();
 
         // passing integer params
-        calc.add(1, 2);
-        System.out.println(calc.getResult());
+        standardCalculator.add(1, 2);
+        System.out.println(standardCalculator.getResult());
 
         // passing double params
-        calc.add(1.5, 2.5);
-        System.out.println(calc.getResult());
+        standardCalculator.add(1.5, 2.5);
+        System.out.println(standardCalculator.getResult());
 
         try {
-            calc.add(Double.MAX_VALUE, 1.0);
+            standardCalculator.add(Double.MAX_VALUE, 1.0);
         } catch (ArithmeticException e) {
             e.printStackTrace();
         }
 
-        calc.printResult();
+        standardCalculator.printResult();
+
+        LogicalCalculator logicalCalculator = new LogicalCalculator();
+        logicalCalculator.OR(8, 6);
+        standardCalculator.printResult();
+
     }
 }
