@@ -90,4 +90,22 @@ public class StandardCalculatorTest {
     void testSubtractionOverflowForDoubles() {
         assertThrows(ArithmeticException.class, () -> standardCalculator.subtract(-Double.MAX_VALUE, Double.MAX_VALUE));
     }
+
+    @Test
+    @DisplayName("Test Multiplication Overflow of Two Doubles")
+    void testMultiplicationOverflowForDoubles() {
+        assertThrows(ArithmeticException.class, () -> standardCalculator.multiply(Double.MAX_VALUE, Double.MAX_VALUE));
+    }
+
+    @Test
+    @DisplayName("Test Multiplication Overflow of Two Doubles in which One is Positive and Other is Negative")
+    void testMultiplicationOverflowForDoublesOnePosOtherNeg() {
+        assertThrows(ArithmeticException.class, () -> standardCalculator.multiply(-Double.MAX_VALUE, Double.MAX_VALUE));
+    }
+
+    @Test
+    @DisplayName("Test Division Divide By Zero Scenario")
+    void testDivisionDivideByZero() {
+        assertThrows(ArithmeticException.class, () -> standardCalculator.divide(10.0, 0.0));
+    }
 }

@@ -1,9 +1,11 @@
 package com.calc;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ScientificCalculatorTest {
     private ScientificCalculator scientificCalculator;
@@ -19,7 +21,7 @@ public class ScientificCalculatorTest {
         double expectedResult = 1.0;
         scientificCalculator.sin(Math.PI / 2);
         double actualResult = scientificCalculator.getResult();
-        Assertions.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -28,7 +30,7 @@ public class ScientificCalculatorTest {
         double expectedResult = -1.0;
         scientificCalculator.cos(Math.PI);
         double actualResult = scientificCalculator.getResult();
-        Assertions.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -37,7 +39,7 @@ public class ScientificCalculatorTest {
         double expectedResult = 0;
         scientificCalculator.tan(0);
         double actualResult = scientificCalculator.getResult();
-        Assertions.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -46,7 +48,7 @@ public class ScientificCalculatorTest {
         double expectedResult = 1;
         scientificCalculator.log(Math.exp(1));
         double actualResult = scientificCalculator.getResult();
-        Assertions.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -55,7 +57,7 @@ public class ScientificCalculatorTest {
         double expectedResult = 2;
         scientificCalculator.sqrt(4);
         double actualResult = scientificCalculator.getResult();
-        Assertions.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -64,7 +66,7 @@ public class ScientificCalculatorTest {
         double expectedResult = 2;
         scientificCalculator.cbrt(8);
         double actualResult = scientificCalculator.getResult();
-        Assertions.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -73,6 +75,12 @@ public class ScientificCalculatorTest {
         double expectedResult = 16;
         scientificCalculator.square(4);
         double actualResult = scientificCalculator.getResult();
-        Assertions.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    @DisplayName("Test Square Overflow")
+    void testSquareOverflow() {
+        assertThrows(ArithmeticException.class, () -> scientificCalculator.square(Double.MAX_VALUE));
     }
 }
